@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str1[100], str2[100];
+    int i, j;
+
+    printf("Input the first string: ");
+    gets(str1);
+
+    printf("Input the second string: ");
+    gets(str2);
+
+    // Find the length of the first string
+    i = strlen(str1);
+
+    // Combine the second string with the first string
+    for (j = 0; str2[j] != '\0'; i++, j++) {
+        str1[i] = str2[j];
+    }
+
+    // Null terminate the combined string
+    str1[i] = '\0';
+
+    // Print the combined string
+    printf("Combined string: %s", str1);
+
+    return 0;
+}
