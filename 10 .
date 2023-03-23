@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+void findFactorial(int num, int *factPtr);
+
+int main()
+{
+    int num, fact = 1;
+    int *factPtr = &fact;
+
+    printf("Enter a number to find its factorial: ");
+    scanf("%d", &num);
+
+    findFactorial(num, factPtr);
+
+    printf("Factorial of %d is: %d\n", num, fact);
+
+    return 0;
+}
+
+void findFactorial(int num, int *factPtr)
+{
+    for(int i = 1; i <= num; i++)
+    {
+        *factPtr *= i;
+    }
+}
