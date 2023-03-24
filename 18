@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+
+struct Student {
+   string name;
+   int python_marks;
+   int c_marks;
+   int maths_marks;
+   int physics_marks;
+};
+
+int main() {
+   int n;
+   cout << "Enter the number of students: ";
+   cin >> n;
+   Student students[n];
+   
+   // input marks for each student
+   for (int i = 0; i < n; i++) {
+      cout << "Enter the name of student " << i+1 << ": ";
+      cin >> students[i].name;
+      cout << "Enter the marks in python for " << students[i].name << ": ";
+      cin >> students[i].python_marks;
+      cout << "Enter the marks in c programming for " << students[i].name << ": ";
+      cin >> students[i].c_marks;
+      cout << "Enter the marks in Mathematics for " << students[i].name << ": ";
+      cin >> students[i].maths_marks;
+      cout << "Enter the marks in Physics for " << students[i].name << ": ";
+      cin >> students[i].physics_marks;
+   }
+   
+   // calculate total and aggregate for each student
+   for (int i = 0; i < n; i++) {
+      int total = students[i].python_marks + students[i].c_marks + students[i].maths_marks + students[i].physics_marks;
+      float aggregate = total / 4.0;
+      
+      // display total and aggregate for each student
+      cout << "Total marks obtained by " << students[i].name << " = " << total << endl;
+      cout << "Aggregate marks obtained by " << students[i].name << " = " << aggregate << endl;
+      
+      // calculate grade for each student based on aggregate
+      if (aggregate >= 75) {
+         cout << "Grade obtained by " << students[i].name << " = DISTINCTION" << endl;
+      }
+      else if (aggregate >= 60 && aggregate < 75) {
+         cout << "Grade obtained by " << students[i].name << " = FIRST DIVISION" << endl;
+      }
+      else if (aggregate >= 50 && aggregate < 60) {
+         cout << "Grade obtained by " << students[i].name << " = SECOND DIVISION" << endl;
+      }
+      else if (aggregate >= 40 && aggregate < 50) {
+         cout << "Grade obtained by " << students[i].name << " = THIRD DIVISION" << endl;
+      }
+      else {
+         cout << "Grade obtained by " << students[i].name << " = FAIL" << endl;
+      }
+   }
+   return 0;
+}
