@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+// Swap two elements in an array
+void swap(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// Partition the array and return the index of the pivot element
+int partition(int arr[], int low, int high) {
+    int pivot = arr[high];  // Choose the last element as the pivot
+    int i = low - 1;  // Index of the smaller element
+
+    for (int j = low; j <= high - 1; j++) {
+        // If current element is smaller than or equal to pivot
+        if (arr[j] <= pivot) {
+            i++;  // Increment index of smaller element
+            swap(&arr[i], &arr[j]);  // Swap arr[i] and arr[j]
+        }
+    }
+
+    swap(&arr[i + 1], &arr[high]);  // Swap arr[i + 1] and arr[high] (pivot)
+    return i + 1;  // Return the index of pivot
+}
+
+// Recursive function to find the kth smallest element in the array
+int kthSmallest(int arr[], int low, int high, int k) {
+    if (k > 0 && k <= high - low + 1) {
+        int pivotIndex = partition(arr, low, high);  // Partition the array and get the index of pivot element
+
+        // If the pivot element is the kth smallest element
+        if (pivotIndex - low == k - 1) {
+            return arr[pivotIndex];
+        }
+
+        // If the pivot element is greater than the kth smallest element, search in the left subarray
+        if (pivotIndex - low > k - 1) {
+            return kthSmallest(arr, low, pivotIndex - 1, k);
+        }
+
+        // If the pivot element is smaller than the kth smallest element, search in the right subarray
+        return kthSmallest(arr, pivotIndex + 1, high, k - pivotIndex + low - 1);
+    }
+
+    // If k is out of range, return -1
+    return -1;
+}
+
+int main() {
+    int arr[] = { 7, 10, 4, 3, 20, 15 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int k = 3;  // Find the 3rd smallest element
+    int kthSmallestElement = kthSmallest(arr, 0, n - 1, k);
+
+    if (kthSmallestElement != -1) {
+        printf("The %dth smallest element in the array is %d\n", k, kthSmallestElement);
+    }
+    else {
+        printf("Invalid input!\n");
+    }
+
+    return 0;
+}
