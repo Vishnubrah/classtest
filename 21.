@@ -1,0 +1,29 @@
+# take input as a matrix
+matrix = []
+n = int(input("Enter the size of the matrix: "))
+print("Enter the matrix elements row-wise:")
+for i in range(n):
+    row = list(map(int, input().split()))
+    matrix.append(row)
+
+# display the matrix
+print("The matrix is:")
+for i in range(n):
+    for j in range(n):
+        print(matrix[i][j], end=" ")
+    print()
+
+# find the diagonal elements and their sum
+sum_diag = 0
+diag_elements = []
+for i in range(n):
+    for j in range(n):
+        if i == j:
+            diag_elements.append(matrix[i][j])
+            sum_diag += matrix[i][j]
+
+# display the diagonal elements and their sum
+print("Diagonal Elements are:", end=" ")
+for ele in diag_elements:
+    print(ele, end=" ")
+print("\nSum of diagonal elements =", sum_diag)
